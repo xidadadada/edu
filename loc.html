@@ -86,11 +86,13 @@ function getdingwei() {
                     var gg_lat =  lat; 
                     var gc = new BMap.Geocoder(); 
                     var pointAdd = new BMap.Point(gg_lon, gg_lat);
+		    var str=['实际地理位置是'];
+
                     gc.getLocation(pointAdd, function(rs){
                             // 百度地图解析城市名
                             var addComp = rs.addressComponents;
-			    var str = addComp.province + ", " + addComp.city + ", " + addComp.district + ", " + addComp.street + ", " + addComp.streetNumber;
-                            document.getElementById('tip2').innerHTML = str;
+			    str.push(addComp.province + ", " + addComp.city + ", " + addComp.district + ", " + addComp.street + ", " + addComp.streetNumber);
+                            document.getElementById('tip2').innerHTML = str.join('<br>');
 			    //或者任何你想要的其他信息
                             //console.log(rs);
                        }
