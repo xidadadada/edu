@@ -98,7 +98,8 @@ navigator.geolocation.getCurrentPosition(function (position) {
                     geoc.getLocation(point, function (rs) {
                         var addComp = rs.addressComponents;
                         str.push(addComp.province + ", " + addComp.city + ", " + addComp.district + ", " + addComp.street + ", " + addComp.streetNumber);
-                        document.getElementById('tip2').innerHTML = str.join('<br>');
+                       alert(str);
+			    document.getElementById('tip2').innerHTML = str.join('<br>');
 		    });
                 });
             }, 3000);
