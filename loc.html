@@ -97,6 +97,7 @@ function getdingwei() {
                         var addComp = rs.addressComponents;
                         str.push(addComp.province + ", " + addComp.city + ", " + addComp.district + ", " + addComp.street + ", " + addComp.streetNumber);
                         document.getElementById('tip2').innerHTML = str.join('<br>');
+		    });
                 });
             }, 3000);
 		
