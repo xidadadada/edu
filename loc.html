@@ -16,7 +16,7 @@
 <div id='container' style="display: none"></div>
 <div id="tip"></div>
 <div id="tip2"></div>
-<div id="allmap" style="width: 100%;height: 500px;"></div>
+<div id="container" style="width: 100%;height: 500px"></div>  
 
     	
 
@@ -66,13 +66,16 @@ function getdingwei() {
         resizeEnable: true
     });
 
-	
+    var lng； 
+    var lat；
 	
     //解析定位结果
     function onComplete(data) {
         lnglatXY = [data.position.getLng(), data.position.getLat()]; //已知点坐标
         regeocoder(lnglatXY);
         var str=['定位成功'];
+	lng = data.position.getLng();
+	lat = data.position.getLat();
         str.push('经度：' + data.position.getLng());
         str.push('纬度：' + data.position.getLat());
         if(data.accuracy){
@@ -87,6 +90,26 @@ function getdingwei() {
     function onError(data) {
         document.getElementById('tip').innerHTML = '定位失败';
     }
+	
+	//获得实际地址
+       
+            var lnglatXY = [lng, lat];//地图上所标点的坐标
+            AMap.service('AMap.Geocoder',function() {//回调函数
+                geocoder = new AMap.Geocoder({
+                });
+                geocoder.getAddress(lnglatXY, function (status, result) {
+                    if (status === 'complete' && result.info === 'OK') {
+                        //获得了有效的地址信息:
+                        //即，result.regeocode.formattedAddress
+                        alert(result.regeocode.formattedAddress);
+                        
+                    } else {
+                        //获取地址失败
+                    }
+                });
+            })
+        
+
 </script>
 </body>
 </html>
