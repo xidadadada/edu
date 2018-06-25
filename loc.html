@@ -34,8 +34,9 @@
         });
     }
     function geocoder_CallBack(data) {
+        alert("get address");
         var address = data.regeocode.formattedAddress; //返回地址描述
-        document.getElementById("result").innerHTML = "ok" + address;
+        document.getElementById("result").innerHTML = address;
     }
 function getdingwei() {
     map.plugin('AMap.Geolocation', function() {
