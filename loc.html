@@ -81,22 +81,26 @@ function getdingwei() {
     }
     //手动定位
         function user_position(lot,lat){
+		
+            var map = new BMap.Map("allmap");
+            var longitude, latitude;
+            var str=['实际地理位置是'];
+		
+                longitude = lot;
+                latitude = lat;
             
-                    var gg_lon = lot;
-                    var gg_lat =  lat; 
-                    var gc = new BMap.Geocoder(); 
-                    var pointAdd = new BMap.Point(gg_lon, gg_lat);
-		    var str=['实际地理位置是'];
-
-                    gc.getLocation(pointAdd, function(rs){
-                            // 百度地图解析城市名
-                            var addComp = rs.addressComponents;
-			    str.push(addComp.province + ", " + addComp.city + ", " + addComp.district + ", " + addComp.street + ", " + addComp.streetNumber);
-                            document.getElementById('tip2').innerHTML = str.join('<br>');
-			    //或者任何你想要的其他信息
-                            //console.log(rs);
-                       }
-                    );
+            setTimeout(function () {
+                var gpsPoint = new BMap.Point(longitude, latitude);
+                BMap.Convertor.translate(gpsPoint, 0, function (point) {
+                    var geoc = new BMap.Geocoder();
+                    geoc.getLocation(point, function (rs) {
+                        var addComp = rs.addressComponents;
+                        str.push(addComp.province + ", " + addComp.city + ", " + addComp.district + ", " + addComp.street + ", " + addComp.streetNumber);
+                        document.getElementById('tip2').innerHTML = str.join('<br>');
+                });
+            }, 3000);
+		
+		
               
         }
     
