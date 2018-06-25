@@ -20,10 +20,7 @@
 <script type="text/javascript">
 
     function regeocoder(lnglatXY) {  //逆地理编码
-        var geocoder = new AMap.Geocoder({
-            radius: 1000,
-            extensions: "all"
-        });
+        
         geocoder.getAddress(lnglatXY, function(status, result) {
             if (status === 'complete' && result.info === 'OK') {
                 geocoder_CallBack(result);
@@ -63,7 +60,11 @@ function getdingwei() {
         resizeEnable: true
     });
 
- 
+ 	var geocoder = new AMap.Geocoder({
+            radius: 1000,
+            extensions: "all"
+        });
+
 	
     //解析定位结果
     function onComplete(data) {
