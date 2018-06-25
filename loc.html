@@ -65,6 +65,33 @@ function getdingwei() {
         resizeEnable: true
     });
 
+	//手动定位
+        function user_position(lot,lat){
+		
+            var map2 = new BMap.Map("allmap");
+            var longitude, latitude;
+	    navigator.geolocation.getCurrentPosition(function (position) {  
+  		  longitude = position.coords.longitude;  
+   	          latitude = position.coords.latitude;  
+	    });  
+
+            var str=['实际地理位置是'];
+		
+            setTimeout(function () {
+                var gpsPoint = new BMap.Point(longitude, latitude);
+                BMap.Convertor.translate(gpsPoint, 0, function (point) {
+                    var geoc = new BMap.Geocoder();
+                    geoc.getLocation(point, function (rs) {
+                        var addComp = rs.addressComponents;
+                        str.push(addComp.province + ", " + addComp.city + ", " + addComp.district + ", " + addComp.street + ", " + addComp.streetNumber);
+                        alert(str);
+			document.getElementById('tip2').innerHTML = str.join('<br>');
+		    });
+                });
+            }, 3000);
+	       
+        }
+	
     //解析定位结果
     function onComplete(data) {
         lnglatXY = [data.position.getLng(), data.position.getLat()]; //已知点坐标
@@ -79,34 +106,7 @@ function getdingwei() {
         document.getElementById('tip').innerHTML = str.join('<br>');
         user_position(data.position.getLng(),data.position.getLat());
     }
-    //手动定位
-        function user_position(lot,lat){
-		
-            var map2 = new BMap.Map("allmap");
-            var longitude, latitude;
-navigator.geolocation.getCurrentPosition(function (position) {  
-    longitude = position.coords.longitude;  
-    latitude = position.coords.latitude;  
-});  
-
-            var str=['实际地理位置是'];
-		
-            setTimeout(function () {
-                var gpsPoint = new BMap.Point(longitude, latitude);
-                BMap.Convertor.translate(gpsPoint, 0, function (point) {
-                    var geoc = new BMap.Geocoder();
-                    geoc.getLocation(point, function (rs) {
-                        var addComp = rs.addressComponents;
-                        str.push(addComp.province + ", " + addComp.city + ", " + addComp.district + ", " + addComp.street + ", " + addComp.streetNumber);
-                       alert(str);
-			    document.getElementById('tip2').innerHTML = str.join('<br>');
-		    });
-                });
-            }, 3000);
-		
-		
-              
-        }
+    
     
     //解析定位错误信息
     function onError(data) {
