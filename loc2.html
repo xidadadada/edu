@@ -97,7 +97,7 @@ function geocoder_CallBack(data) {
     var address;
     //返回地址描述
     address = data.regeocode.formattedAddress;
-    alert(address);
+    //alert(address);
     //返回结果拼接输出
     resultStr = "<div style=\"font-size: 20px;padding:0px 0 4px 2px; \">"+"<b>我在</b>："+ address + "<br>经度:"+ lot + ",纬度:"+ lat +"</div>";
     document.getElementById("tip").innerHTML = resultStr;
