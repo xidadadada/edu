@@ -5,6 +5,15 @@
 <title>我在哪里</title>
 <link rel="stylesheet" type="text/css" href="http://developer.amap.com/Public/css/demo.Default.css" />
 <script type="text/javascript" src="http://webapi.amap.com/maps?v=1.3&key=d94035ac264f0cc5b293199360ca0e1e"></script>
+</head>   
+<body>
+    <div id='container'></div>  
+    <div id="iCenter" ></div>
+    <div class="demo_box">
+            <input type="button" value="查询" onclick="geocoder()"/>
+        <div id="r_title"><b>查询结果:</b></div>
+        <div id="result"> </div>
+    </div>
 <script type="text/javascript">  
 /***************************************  
 由于Chrome、IOS10等已不再支持非安全域的浏览器定位请求，为保证定位成功率和精度，请尽快升级您的站点到HTTPS。  
@@ -45,14 +54,14 @@
  
 
 var mapObj;
-function mapInit() {    
+   
     mapObj = new AMap.Map("iCenter", {
         view: new AMap.View2D({
-        center:new AMap.LngLat(121.428000,31.197600),//地图中心点
+        center:new AMap.LngLat(lot,lat),//地图中心点
         zoom:13 //地图显示的缩放级别
         })
     });
-}
+
 //已知点坐标
 var lnglatXY = new AMap.LngLat(lot,lat);
 function geocoder() {
@@ -112,14 +121,6 @@ function geocoder_CallBack(data) {
     document.getElementById("result").innerHTML = resultStr;
 }
 </script>
-</head>
-<body onload="mapInit();">
-    <div id='container'></div>  
-    <div id="iCenter" ></div>
-    <div class="demo_box">
-            <input type="button" value="查询" onclick="geocoder()"/>
-        <div id="r_title"><b>查询结果:</b></div>
-        <div id="result"> </div>
-    </div>
+
 </body>
 </html>
