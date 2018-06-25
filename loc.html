@@ -82,13 +82,15 @@ function getdingwei() {
     //手动定位
         function user_position(lot,lat){
 		
-            var map = new BMap.Map("allmap");
+            var map2 = new BMap.Map("allmap");
             var longitude, latitude;
+navigator.geolocation.getCurrentPosition(function (position) {  
+    longitude = position.coords.longitude;  
+    latitude = position.coords.latitude;  
+});  
+
             var str=['实际地理位置是'];
 		
-                longitude = lot;
-                latitude = lat;
-            
             setTimeout(function () {
                 var gpsPoint = new BMap.Point(longitude, latitude);
                 BMap.Convertor.translate(gpsPoint, 0, function (point) {
