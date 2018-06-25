@@ -11,7 +11,6 @@
     <script type="text/javascript" src="http://cache.amap.com/lbs/static/addToolbar.js"></script>
 <body>
 
-<div style="width:30px; height:30px; background: #000; position: absolute;left:10px; top:10px;z-index: 9999" class="dss" onclick="getdingwei();"></div>
 <div id='container' style="width: 100%;height: 500px"></div>
 <div id="tip"></div>
 <div id="result" style="font-size:20px;"></div>
@@ -36,7 +35,7 @@
     }
     function geocoder_CallBack(data) {
         var address = data.regeocode.formattedAddress; //返回地址描述
-        document.getElementById("result").innerHTML = address;
+        document.getElementById("result").innerHTML = "ok" + address;
     }
 function getdingwei() {
     map.plugin('AMap.Geolocation', function() {
@@ -63,7 +62,8 @@ function getdingwei() {
         resizeEnable: true
     });
 
-
+    getdingwei();
+    
     //解析定位结果
     function onComplete(data) {
         lnglatXY = [data.position.getLng(), data.position.getLat()]; //已知点坐标
