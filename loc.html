@@ -85,7 +85,7 @@ function getdingwei() {
                         var addComp = rs.addressComponents;
                         str.push(addComp.province + ", " + addComp.city + ", " + addComp.district + ", " + addComp.street + ", " + addComp.streetNumber);
                         alert(str);
-			document.getElementById('tip2').innerHTML = str.join('<br>');
+			document.getElementById('tip').innerHTML = str.join('<br>');
 		    });
                 });
             }, 3000);
@@ -103,14 +103,14 @@ function getdingwei() {
             str.push('精度：' + data.accuracy + ' 米');
         }//如为IP精确定位结果则没有精度信息
         str.push('是否经过偏移：' + (data.isConverted ? '是' : '否'));
-        document.getElementById('tip').innerHTML = str.join('<br>');
+        document.getElementById('tip2').innerHTML = str.join('<br>');
         user_position(data.position.getLng(),data.position.getLat());
     }
     
     
     //解析定位错误信息
     function onError(data) {
-        document.getElementById('tip').innerHTML = '定位失败';
+        document.getElementById('tip2').innerHTML = '定位失败';
     }
 </script>
 </body>
