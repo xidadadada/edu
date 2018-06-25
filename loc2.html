@@ -68,22 +68,9 @@ function geocoder_CallBack(data) {
     var address;
     //返回地址描述
     address = data.regeocode.formattedAddress;
-    //返回周边道路信息
-    roadinfo +="<table style='width:600px'>";
-    for(var i=0;i<data.regeocode.roads.length;i++){
-        var color = (i % 2 === 0 ? '#fff' : '#eee');
-        roadinfo += "<tr style='background-color:" + color + "; margin:0; padding:0;'><td>道路：" + data.regeocode.roads[i].name + "</td><td>方向：" + data.regeocode.roads[i].direction + "</td><td>距离：" + data.regeocode.roads[i].distance + "米</td></tr>";
-    }
-    roadinfo +="</table>"
-    //返回周边兴趣点信息
-    poiinfo += "<table style='width:600px;cursor:pointer;'>";
-    for(var j=0;j<data.regeocode.pois.length;j++){
-        var color = j % 2 === 0 ? '#fff' : '#eee';
-        poiinfo += "<tr onmouseover='onMouseOver(\"" + data.regeocode.pois[j].location.toString() + "\")' style='background-color:" + color + "; margin:0; padding:0;'><td>兴趣点：" + data.regeocode.pois[j].name + "</td><td>类型：" + data.regeocode.pois[j].type + "</td><td>距离：" + data.regeocode.pois[j].distance + "米</td></tr>";
-    }
-    poiinfo += "</table>";
+    
     //返回结果拼接输出
-    resultStr = "<div style=\"font-size: 12px;padding:0px 0 4px 2px; border-bottom:1px solid #C1FFC1;\">"+"<b>地址</b>："+ address + "<hr/><b>周边道路信息</b>：<br/>" + roadinfo + "<hr/><b>周边兴趣点信息</b>：<br/>" + poiinfo +"</div>";
+    resultStr = "<div style=\"font-size: 12px;padding:0px 0 4px 2px; border-bottom:1px solid #C1FFC1;\">"+"<b>地址</b>："+ address + "<hr/></div>";
     document.getElementById("result").innerHTML = resultStr;
 }
 </script>
